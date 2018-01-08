@@ -1,0 +1,386 @@
+Pre- processor
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+#include <cmath>
+
+using namespace std;
+
+Printing
+
+cout << "hello duniya" << endl;
+
+Variables and Datatypes
+
+const double pi = 3.14;
+char myGrade = 'A';
+bool dd = true;
+int integer = 2;
+float f  = 2.3;
+
+/*
+short int - 16 bits
+long int- 32 bits
+long long int - 64 bits
+
+
+*/
+
+Size of datatypes
+
+cout << sizeof(myVariable) << endl;
+
+Incrementing
+
+int var = 5;
+cout << var++ << var << endl;  // 56
+var = 5;
+cout << ++var << var << endl; // 66
+
+Arithmetic --> DMAS rule
+
+Casting
+
+double x = (float)4/5;
+
+Conditions
+
+and- &&, or- ||, not- !
+
+if (var<4){
+	cout << "yay" << endl;
+} else{
+	cout << "wtf" << endl;
+}
+
+Loops
+
+switch(var){
+	case 1:
+	cout << "var=1" << endl;
+	case 2:
+	cout << "var=2" << endl;
+	default:
+	cout << "var!=1 && var!=2" << endl;
+}
+
+for (int i=0;i<4;i++){
+	cout  << i  << endl;
+}
+
+while (i<100){
+	cout  << i++ << endl;
+}
+
+do{
+	cout << i++ << endl;
+} while(i<100);
+
+
+Asigning variable according to condition
+
+var = (condition)? true:false;
+ex:
+var = (var1<var2)? var1:var2;
+
+Array
+
+int nums[5];
+int arr[5] = {1,2,3,4,5};
+cout  << arr[0] << endl;  // outputs one
+
+Multidimensional arrays
+
+int twoDarray[2][2] = {{1,2},{3,4}};
+
+Random Number Generation
+
+int randomNum = (rand() % 100); // generates random numbres between 0 to 99 (both inclusive)
+//  tbo generate random numbers between 1 to 100
+int randomNum = (rand() % 100)+1; 
+
+User Input
+
+getline(cin,myVariable); // stored as a string
+
+Converting String to Integer
+
+integer = stoi(myVariable);
+
+Converting String to Double
+
+integer = stod(myVariable);
+
+Strings
+
+Unlike C, C++ has string objects
+
+in C:
+char thisString[5] = {'h','e','y','a','\0'}; 
+
+C++:
+
+string thisString = "heya"; // sorted!
+
+string combined = string1 + string2;
+
+Size of the string:
+cout << "size = "<<thisString.size() << endl;
+
+Appending
+string string 3 = string1.append(string2);
+
+cout << str1.compare(str2) << endl;
+
+str1 == str2 is true if str1.compare(str2)==0
+
+Making copies of strings
+
+string wholeName = yourName.assign(yourName);
+
+Making substrings
+
+string firstName = wholeName.assign(wholeName,0,5); // 5th index not included
+
+Searching on the String
+
+int lastName = yourName.find("Khalsa",0); // 0-> index to start searching from
+
+Inserting into a string
+
+yourName.insert(5,"Singh");
+
+Erasing from the string
+
+yourName.erase(7,6); // erase 6 characters starting from the 7th position
+
+Replacing
+// replacing 5 characters at index 6 with the string in the third argument
+yourName.replace(6,5,"MaddyMad");
+
+Vectors
+
+vector <int> numberVector(5);
+numberVector.insert(numberVector.begin()+i,3); // i-> position at which 3 is to be inserted
+
+Printing at (i)th index
+
+numberVector.at(i);
+
+Inserting an array in vector:
+
+vector <int> numberVector(5);
+int numberArray[5] = {1,2,3,4,5};
+numberVector.insert(numberVector.begin(),numberArray,numberArray+3); // inserting the first three numbers only
+
+Adding a value to the end
+
+numberVector.push_back(100);
+
+Removing the final value
+numberVector.pop_back();
+
+Getting the first element
+numberVector.front();
+
+Getting the last element
+numberVector.back();
+
+Checking if the vector is empty
+numberVector.empty(); // 0 if empty, 1 if not
+
+Functions
+
+They go up before the main function
+
+int addInt(int x,int y){
+	return (x+y);
+}
+
+==> Functions can be overloaded
+
+int func(int x,int y = 0){ // y will take default value of 0 if not provided as an argument
+	return (x+y); 
+}
+
+
+int main(){
+	int n = func(1); 
+	cout << n << endl;
+	return 0;
+}
+
+File I/O
+
+string quote = "an apple a day keeps the savings away"
+ofstream writer("quote.txt");
+if (!writer){ // file stream isn't open
+	cout << "Error opening the file" << endl;
+	return -1;
+} else{
+	writer << quote << endl;
+	writer.close();
+}
+
+// opening the file stream to append
+
+ofstream writer2("quote.txt",ios::app);
+
+/* ios :: app - append the file
+ios :: binary - treat the file as binary
+ios :: in - open a file to read input
+ios :: trunc - default
+ios :: out - open a file to write output
+*/
+
+if (!writer2){ // file stream isn't open
+	cout << "Error opening the file" << endl;
+	return -1;
+} else{
+	writer2 << "\n quote by PSK" << endl;
+	writer2.close();
+}
+
+// reading from the file
+
+char l;
+// creating an input file stream
+
+ifstream reader("quote.txt"); 
+
+if (!reader){
+	cout << "Error opening the file" << endl;
+	return -1;
+}else{
+	for (int i=0;!reader.eof();i++){ // while reader doesn't get to the end of the file
+		reader.get(letter);
+		cout << letter;
+	}
+
+	cout << endl;
+	reader.close();
+}
+
+Exception Handling
+
+int n = 0;
+
+try{
+	if (n!=0){
+		cout << 2/n << endl; 
+	}
+	else{
+		throw (n);
+	}
+}catch(int n){
+	cout << "number n= " << n << " isn't valid" << endl;
+}
+
+Pointers
+
+pointer variable stores the address of the variable it's pointing to
+--> useful in passing references
+
+int age = 10 ;
+int* agePtr = &age ; // POINTER
+// *agePtr = 10, dereferencing
+// another way
+int& agePtr = age; // REFERENCE; now, agePtr is going to give 10 ==> HAVE TO INITIALIZE AT DECLARATION, can't be changed
+==> USE POINTERS WHEN NOT INITIALIZING AT DECLARATION 
+// array variable is nothing but the pointer to the first element
+
+OOP
+
+--> Write classes outside main function
+
+class Animal{
+	private:
+		int height;
+		int weight;
+		string name;
+
+		static int numOfAnimals; // static ==> variable of the whole class <ATTRIBUTES>
+
+	public:
+		int getHeight(){
+			return height;
+		}
+
+		void setAll(int,int,string);
+
+		// constructor (can be overloaded)
+		Animal(int, int, string);
+
+		// deconstructor
+		~Animal
+
+		static int getNumOfAnimals(){
+			return numOfAnimals; 
+			// static method can only use stati variables
+		}
+
+		void toString();
+
+	protected:
+		int whatever;
+
+
+
+}; 
+
+//Using "this keyword"  ==> this->x = 2;
+
+// setting up static variables
+Animals :: numOfAnimals = 0;
+void Animal::setAll(int h, int w, string n){
+	this -> height = h;
+	// similarly for weight and name
+	
+}
+
+// constructor
+Animal::Animal(int h, int w, string n){
+	this -> height = h;
+	// similarly for weight and name
+	Animal::numOfAnimals++;
+}
+
+// deconstructor
+Animal::~Animal(){
+	cout << "Animal" << this->name << "destroyed" << endl;
+}
+
+void Animal::toString(){
+	// print all the information of the animal
+}
+
+int main(){
+	Animal fred;
+	fred.setHeight(23);
+	Animal tom(34,53,"Tom");
+
+	return 0;
+}
+
+FOR INHERITANCE:
+
+class Dog  : public Animal{
+	
+	// business as usual
+}
+
+Virtual methods
+
+public:
+	virtual int func();
+
+==> gets executed only if called by an object that directly belongs to that class, not the child class
+
+
+
+
+
+
+
